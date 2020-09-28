@@ -1,0 +1,16 @@
+{
+  "name": "vizion-api",
+  "version": "1.0.0",
+  "description": "Vizion 44 API Integration for Track and Trace.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.0",
+    "serverless-wsgi": "^1.7.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
