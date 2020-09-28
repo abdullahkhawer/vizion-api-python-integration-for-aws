@@ -1,0 +1,36 @@
+service: vizion-api-aws
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: ${env:ENVIRONMENT}
+  region: ${env:AWS_REGION}
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+
+functions:
+  lambda:
+    role: ${env:AWS_LAMBDA_IAM_ROLE_ARN}
+    environment:
+      ENVIRONMENT: ${env:ENVIRONMENT}
+      VIZION_API_HOST: ${env:VIZION_API_HOST}
+      VIZION_API_KEY: ${env:VIZION_API_KEY}
+      VIZION_API_DATA_S3_BUCKET: ${env:VIZION_API_DATA_S3_BUCKET}
+      PAPERTRAIL_HOST: ${env:PAPERTRAIL_HOST}
+      PAPERTRAIL_PORT: ${env:PAPERTRAIL_PORT}
+      SLACK_WEBHOOK_URL: ${env:SLACK_WEBHOOK_URL}
+      SLACK_INFO_CHANNEL: ${env:SLACK_INFO_CHANNEL}
+      SLACK_ERROR_CHANNEL: ${env:SLACK_ERROR_CHANNEL}
+    handler: wsgi_handler.handler
+    events:
+      - http: ANY /
+      - http: ANY {proxy+}
+
+custom:
+  wsgi:
+    app: api.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: non-linux
