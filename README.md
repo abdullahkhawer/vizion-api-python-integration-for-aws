@@ -5,7 +5,7 @@
 
 ## Introduction
 
-Vizion API Integration in Python using Flask for AWS using AWS Lambda, AWS API Gateway, AWS S3, and Serverless Framework for Deployment.
+Vizion API Integration in Python using Flask for AWS using AWS Lambda and AWS API Gateway which can be deployed using Serverless Framework.
 
 AWS Lambda function is using Python 3.7 as its runtime environment.
 
